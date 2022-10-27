@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
 
 import '../model/song_model.dart';
@@ -12,15 +15,24 @@ class SongMainScreen extends StatefulWidget {
 }
 
 class _SongMainScreenState extends State<SongMainScreen> {
-  Song song=Song.songs[0];
+  Song song=Get.arguments ??  Song.songs[0];
   AudioPlayer audioPlayer=AudioPlayer();
+
   @override
   void initState(){
     audioPlayer.setAudioSource(
         ConcatenatingAudioSource(
             children: [
           AudioSource.uri(
-              Uri.parse('asset:///${song.url}')
+              Uri.parse('asset:///${song.url}'),
+
+            tag: MediaItem(
+              id: '${'asset:///${song.url}'}',
+              // Metadata to display in the notification:
+              album: "${'asset:///${song.coverUrl}'}",
+              title: "${'asset:///${song.title}'}",
+              artUri: Uri.parse('https://example.com/albumart.jpg'),
+            ),
           ),
               AudioSource.uri(
                   Uri.parse('${Song.songs[1].url}')
@@ -171,10 +183,28 @@ class _SongMainScreenState extends State<SongMainScreen> {
                           return IconButton(
                               onPressed: audioPlayer.hasNext? audioPlayer.seekToNext:null,
                               iconSize: 45,
-                              icon:Icon(Icons.skip_next));
+                              icon:Icon(Icons.skip_next)
+                          );
                         }),
                   ],
                 ),
+                SizedBox(height: 12,),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                        onPressed: audioPlayer.hasNext? audioPlayer.seekToNext:null,
+                        iconSize: 30,
+                        icon:Icon(Icons.settings)
+                    ),
+                    IconButton(
+                        onPressed: audioPlayer.hasNext? audioPlayer.seekToNext:null,
+                        iconSize: 30,
+                        icon:Icon(Icons.cloud_download)
+                    )
+                  ],
+                )
               ],
             ),
           ),

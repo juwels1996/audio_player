@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -38,8 +39,8 @@ class SongScreen extends StatelessWidget {
               ),
             ),
             Container(
-              height: 50,
-              width: MediaQuery.of(context).size.width*0.37,
+              height: 72,
+              width: MediaQuery.of(context).size.width*0.45,
               margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -47,16 +48,21 @@ class SongScreen extends StatelessWidget {
 
               ),
               child:Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  Padding(
+                      padding: EdgeInsets.all(8),
+                  child: Column(
                     children: [
-                      Text(song.title,style: TextStyle(color: Colors.teal,fontWeight: FontWeight.bold,fontSize: 16),),
+                      Text(song.title,style: TextStyle(color: Colors.teal,fontWeight: FontWeight.bold,fontSize: 13),),
                       Text(song.description,style: TextStyle(color: Colors.teal),),
+                      Icon(Icons.play_circle,color: Colors.deepPurple,)
                     ],
                   ),
-                  Icon(Icons.play_circle,color: Colors.deepPurple,)
+
+                  )
+
                 ],
               ) ,
 

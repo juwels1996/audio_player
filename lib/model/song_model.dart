@@ -11,7 +11,7 @@ class Song{
 });
   static List<Song>songs=[
     Song(
-        title: 'first song',
+        title: 'tere mera dil ka rista ',
         description: 'Hindi song',
         url: 'assets/music/one.mp3',
         coverUrl: 'assets/images/first1.jpg'),
