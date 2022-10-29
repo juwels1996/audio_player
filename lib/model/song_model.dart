@@ -11,17 +11,18 @@ class Song{
 });
   static List<Song>songs=[
     Song(
-        title: 'tere mera dil ka rista ',
-        description: 'Hindi song',
-        url: 'assets/music/one.mp3',
-        coverUrl: 'assets/images/first1.jpg'),
-    Song(title: 'second song',
-        description: 'Hindi song',
+        title: 'Darkest fair ',
+        description: 'Audio Book',
+        url: 'https://www.harlancoben.com/audio/CaughtSample.mp3',
+        coverUrl: 'assets/images/dark.jpg'),
+
+    Song(title: 'Caught',
+        description: 'Audio Book',
         url: 'https://www.harlancoben.com/audio/DarkestFear2minExtract.mp3',
-        coverUrl: 'assets/images/second2.jpg'),
-    Song(title: 'third song',
-        description: 'Hindi song',
-        url: 'assets/music/third.mp3',
-        coverUrl: 'assets/images/third3.jpg'),
+        coverUrl: 'assets/images/caught.jpg'),
+    Song(title: 'Gone for good',
+        description: 'Audio Book',
+        url: 'https://www.harlancoben.com/audio/HoldTight.mp3',
+        coverUrl: 'assets/images/gone.jpg'),
   ];
 }

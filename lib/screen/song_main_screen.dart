@@ -17,6 +17,8 @@ class SongMainScreen extends StatefulWidget {
 class _SongMainScreenState extends State<SongMainScreen> {
   Song song=Get.arguments ??  Song.songs[0];
   AudioPlayer audioPlayer=AudioPlayer();
+  bool offline =false;
+  bool fromDownloads=false;
 
   @override
   void initState(){
@@ -24,22 +26,33 @@ class _SongMainScreenState extends State<SongMainScreen> {
         ConcatenatingAudioSource(
             children: [
           AudioSource.uri(
-              Uri.parse('asset:///${song.url}'),
+              Uri.parse('${song.url}'),
 
             tag: MediaItem(
-              id: '${'asset:///${song.url}'}',
-              // Metadata to display in the notification:
+              id: '${'${Song.songs[0].url}'}',
               album: "${'asset:///${song.coverUrl}'}",
               title: "${'asset:///${song.title}'}",
-              artUri: Uri.parse('https://example.com/albumart.jpg'),
+              artUri: Uri.parse('assets/images/dark.jpg'),
             ),
           ),
               AudioSource.uri(
-                  Uri.parse('${Song.songs[1].url}')
+                Uri.parse('${Song.songs[1].url}'),
+                tag: MediaItem(
+                  id: '${Song.songs[1].url}',
+                  album:'${Song.songs[1].coverUrl}',
+                  title: '${Song.songs[1].title}',
+                  artUri: Uri.parse('assets/images/caught.jpg'),
+                ),
               ),
               AudioSource.uri(
-                  Uri.parse('asset:///${Song.songs[2].url}')
-              )
+                Uri.parse('${Song.songs[2].url}'),
+                tag: MediaItem(
+                  id: '${Song.songs[2].url}',
+                  album:'${Song.songs[2].coverUrl}',
+                  title: '${Song.songs[2].title}',
+                  artUri: Uri.parse('assets/images/dark.jpg'),
+                ),
+              ),
         ]
         ));
 
@@ -86,7 +99,7 @@ class _SongMainScreenState extends State<SongMainScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(song.title,style: TextStyle(color: Colors.teal,fontWeight: FontWeight.bold,fontSize: 16),),
@@ -198,11 +211,6 @@ class _SongMainScreenState extends State<SongMainScreen> {
                         iconSize: 30,
                         icon:Icon(Icons.settings)
                     ),
-                    IconButton(
-                        onPressed: audioPlayer.hasNext? audioPlayer.seekToNext:null,
-                        iconSize: 30,
-                        icon:Icon(Icons.cloud_download)
-                    )
                   ],
                 )
               ],

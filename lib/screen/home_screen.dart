@@ -111,6 +111,9 @@ class HomeScreen extends StatelessWidget {
   }
 
   Padding DiscoverMusic() {
+    TextEditingController editingController = TextEditingController();
+    final String title;
+    final duplicateItems = List<String>.generate(10000, (i) => "Item $i");
     return Padding(
                 padding: const EdgeInsets.all(22.0),
                 child: Column(
